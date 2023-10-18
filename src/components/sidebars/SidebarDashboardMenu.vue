@@ -1,0 +1,18 @@
+<template>
+  <ul class="sidebar-menu">
+      <SidebarMenuItem label="CRM" icon="sitemap" />
+      <SidebarMenuItem label="Analisis" icon="chart-pie" />
+      <router-link to="/about">
+        <SidebarMenuItem label="Penjualan" icon="shopping-cart" :active="$route.name == 'about'" />
+      </router-link>
+      <SidebarMenuItem label="Eksekutif" icon="arrow-up-right-dots" />
+  </ul>
+</template>
+
+<script lang="ts">
+import SidebarMenuItem from "@/components/sidebars/SidebarMenuItem.vue"
+
+export default {
+  components: { SidebarMenuItem },
+}
+</script>

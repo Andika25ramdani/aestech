@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+#app {
+  @apply relative flex;
+}
+
+.main-content {
+  @apply fixed h-full left-72;
+}
