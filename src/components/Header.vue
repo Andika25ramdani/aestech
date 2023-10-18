@@ -31,7 +31,8 @@
 
 <style>
 .header {
-  @apply w-full py-3 px-12 flex items-center justify-between shadow;
+  @apply fixed py-3 px-8 md:px-12 flex items-center justify-between bg-white shadow;
+  width: -webkit-fill-available;
 }
 
 .current-branch {

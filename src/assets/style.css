@@ -3,10 +3,10 @@
 @tailwind utilities;
 
 #app {
-  @apply relative flex;
+  @apply relative flex bg-gray-100;
 }
 
 .main-content {
-  @apply fixed h-full left-72;
+  @apply absolute sm:left-52 md:left-72;
   width: -webkit-fill-available;
 }

@@ -1,9 +1,9 @@
 <template>
-  <SideBar />
   <div class="main-content">
     <Header />
     <router-view />
   </div>
+  <SideBar />
 </template>
 
 <script lang="ts">

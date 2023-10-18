@@ -51,6 +51,6 @@ export default defineComponent({
 
 <style>
 .sidebar {
-  @apply bg-dark-green fixed h-full w-72 py-8 text-white;
+  @apply bg-dark-green fixed h-full hidden sm:block w-full sm:w-52 md:w-72 py-8 text-white;
 }
 </style>
