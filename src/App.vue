@@ -1,18 +1,16 @@
 <template>
   <SideBar />
   <div class="main-content">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav>
+    <Header />
     <router-view />
   </div>
 </template>
 
 <script lang="ts">
-import SideBar from "./components/sidebars/SideBar.vue"
+import Header from './components/Header.vue'
+import SideBar from './components/sidebars/SideBar.vue'
 
 export default {
-  components: { SideBar },
+  components: { SideBar, Header },
 }
 </script>

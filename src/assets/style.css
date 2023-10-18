@@ -8,4 +8,5 @@
 
 .main-content {
   @apply fixed h-full left-72;
+  width: -webkit-fill-available;
 }
