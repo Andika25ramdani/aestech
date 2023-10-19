@@ -6,11 +6,17 @@
     <div class="profile-column pb-4">
       <div class="w-full lg:w-1/3"></div>
       <div class="w-full lg:w-2/3 border-b border-gray-300 flex items-center">
-        <button class="tab-menu-item active">
+        <button
+          @click="currentTab = 0"
+          :class="`tab-menu-item ${currentTab == 0 ? 'active' : ''}`"
+        >
           <font-awesome-icon :icon="['fas', 'file-lines']" />
           <p>Informasi Pribadi</p>
         </button>
-        <button class="tab-menu-item">
+        <button
+          @click="currentTab = 1"
+          :class="`tab-menu-item ${currentTab == 1 ? 'active' : ''}`"
+        >
           <font-awesome-icon :icon="['fas', 'gear']" />
           <p>Pengaturan Akun</p>
         </button>
@@ -18,121 +24,33 @@
     </div>
 
     <div class="profile-column">
-      <div class="profile-info-card">
-        <img
-          :src="`${profile.avatar}`"
-          :alt="`${profile.fullname} Picture`"
-          class="w-48 h-48 rounded-xl object-cover"
-        />
-
-        <div class="flex flex-col items-center gap-0">
-          <p class="font-bold leading-none">{{ profile.fullname }}</p>
-          <p class="text-xs">{{ profile.position }}</p>
-        </div>
-
-        <div class="flex gap-4">
-          <a :href="`${profile.social_media[0].instagram}`">
-            <font-awesome-icon :icon="['fab', 'instagram']" size="xl" />
-          </a>
-          <a :href="`${profile.social_media[0].twitter}`">
-            <font-awesome-icon :icon="['fab', 'twitter']" size="xl" />
-          </a>
-          <a :href="`${profile.social_media[0].facebook}`">
-            <font-awesome-icon :icon="['fab', 'facebook']" size="xl" />
-          </a>
-        </div>
-
-        <div class="flex flex-col items-center gap-0">
-          <p class="font-bold leading-none">Kantor Cabang {{ profile.branch.name }}</p>
-          <p class="text-sm">{{ profile.branch.address }}</p>
-        </div>
-      </div>
+      <ProfileCard :profile="profile" />
 
       <div class="w-full lg:w-2/3 flex flex-col gap-4">
-        <div class="tab-card">
-          <div class="flex flex-col gap-4">
-            <div class="info-group">
-              <p class="info-group-title">ID Pegawai</p>
-              <p class="w-3/4">{{ profile.id }}</p>
-            </div>
-            <div class="info-group">
-              <p class="info-group-title">Nama Pegawai</p>
-              <p class="w-3/4">{{ profile.fullname }}</p>
-            </div>
-            <div class="info-group">
-              <p class="info-group-title">Jenis Kelamin</p>
-              <p class="w-3/4">{{ profile.gender }}</p>
-            </div>
-            <div class="info-group">
-              <p class="info-group-title">Tanggal Lahir</p>
-              <p class="w-3/4">{{ profile.date_of_birth }}</p>
-            </div>
-            <div class="info-group">
-              <p class="info-group-title">Posisi</p>
-              <p class="w-3/4">{{ profile.position }}</p>
-            </div>
-            <div class="info-group">
-              <p class="info-group-title">Klinik Cabang</p>
-              <p class="w-3/4">Klinik Cabang {{ profile.branch.name }}</p>
-            </div>
-          </div>
-        </div>
-        <div class="tab-card">
-          <div class="flex flex-col gap-4">
-            <div class="info-group">
-              <p class="info-group-title">No. Telepon</p>
-              <input
-                v-model="inputPhone"
-                type="tel"
-                placeholder="No. Telepon"
-                class="w-3/4 rounded-form-input"
-              />
-            </div>
-            <div class="info-group">
-              <p class="info-group-title">Email</p>
-              <input
-                v-model="inputEmail"
-                type="email"
-                placeholder="Email"
-                class="w-3/4 rounded-form-input"
-              />
-            </div>
-            <div class="info-group items-start">
-              <p class="info-group-title">Alamat</p>
-              <textarea
-                v-model="inputAddress"
-                placeholder="Alamat"
-                class="w-3/4 rounded-form-input"
-              ></textarea>
-            </div>
-          </div>
-        </div>
-        <button
-          class="py-4 px-6 rounded-full bg-dark-orange text-white w-max mx-auto mt-4"
-        >
-          Simpan
-        </button>
+        <ProfilePersonalInfo v-if="currentTab == 0" :profile="profile" />
+        <ProfileAccountSetting v-if="currentTab == 1" :profile="profile" />
       </div>
     </div>
   </TemplateView>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent } from 'vue'
 
 import axios from 'axios'
 
 import { Profile } from '@/utils/models/profile'
+import ProfileAccountSetting from '@/components/profiles/ProfileAccountSetting.vue'
+import ProfileCard from '@/components/profiles/ProfileCard.vue'
+import ProfilePersonalInfo from '@/components/profiles/ProfilePersonalInfo.vue'
 import TemplateView from '@/components/RouterViewTemplate.vue'
 
 export default defineComponent({
-  components: { TemplateView },
+  components: { ProfileAccountSetting, ProfileCard, ProfilePersonalInfo, TemplateView },
   data: function () {
     return {
       profile: {} as Profile,
-      inputPhone: '',
-      inputEmail: '',
-      inputAddress: '',
+      currentTab: 0,
     }
   },
   created: function () {
@@ -168,7 +86,7 @@ export default defineComponent({
 }
 
 .tab-menu-item {
-  @apply flex gap-3 items-baseline border-b border-gray-300 min-w-[214px] pb-2 px-8 -mb-px;
+  @apply flex gap-3 items-baseline border-b border-gray-300 min-w-[214px] py-2 px-8 -mb-px;
 }
 
 .tab-menu-item.active {
@@ -193,5 +111,9 @@ export default defineComponent({
 
 .rounded-form-input {
   @apply border rounded-lg outline-none py-1 px-3;
+}
+
+.profile-card-title {
+  @apply font-medium text-lg;
 }
 </style>
