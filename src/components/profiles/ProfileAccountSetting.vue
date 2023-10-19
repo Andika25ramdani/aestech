@@ -2,19 +2,13 @@
   <div class="tab-card py-4">
     <div class="flex justify-between items-center">
       <h4 class="profile-card-title">Ubah kode akses</h4>
-      <font-awesome-icon
-        :icon="['fas', 'chevron-right']"
-        size="xs text-gray-800"
-      />
+      <font-awesome-icon :icon="['fas', 'chevron-right']" size="xs" />
     </div>
   </div>
   <div class="tab-card py-4">
     <div class="flex justify-between items-center">
       <h4 class="profile-card-title">Ubah password</h4>
-      <font-awesome-icon
-        :icon="['fas', 'chevron-right']"
-        size="xs text-gray-800"
-      />
+      <font-awesome-icon :icon="['fas', 'chevron-right']" size="xs" />
     </div>
   </div>
   <div class="tab-card">

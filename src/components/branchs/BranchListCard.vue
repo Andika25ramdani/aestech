@@ -8,14 +8,13 @@
         />
       </div>
       <div class="branch-list-card-info">
-        <h5 class="leading-none font-semibold text-gray-900">{{ branch?.name }}</h5>
-        <p class="text-sm text-gray-700">{{ branch?.email }}</p>
+        <h5 class="leading-none font-semibold text-gray-900">
+          {{ branch?.name }}
+        </h5>
+        <p class="text-sm">{{ branch?.email }}</p>
       </div>
     </div>
-    <font-awesome-icon
-      :icon="['fas', 'chevron-right']"
-      size="xs text-gray-800"
-    />
+    <font-awesome-icon :icon="['fas', 'chevron-right']" size="xs" />
   </div>
 </template>
 

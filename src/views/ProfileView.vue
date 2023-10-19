@@ -46,7 +46,12 @@ import ProfilePersonalInfo from '@/components/profiles/ProfilePersonalInfo.vue'
 import TemplateView from '@/components/RouterViewTemplate.vue'
 
 export default defineComponent({
-  components: { ProfileAccountSetting, ProfileCard, ProfilePersonalInfo, TemplateView },
+  components: {
+    ProfileAccountSetting,
+    ProfileCard,
+    ProfilePersonalInfo,
+    TemplateView,
+  },
   data: function () {
     return {
       profile: {} as Profile,
@@ -82,7 +87,7 @@ export default defineComponent({
 
 <style>
 .profile-column {
-  @apply flex flex-col lg:flex-row justify-between gap-4 text-gray-700;
+  @apply flex flex-col lg:flex-row justify-between gap-4;
 }
 
 .tab-menu-item {

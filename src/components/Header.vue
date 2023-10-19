@@ -12,12 +12,15 @@
       <font-awesome-icon :icon="['fas', 'circle-info']" />
 
       <div class="header-profile">
-        <div class="h12">
+        <div class="h12 relative">
           <img
             src="https://www.wilsoncenter.org/sites/default/files/media/images/person/james-person-1.jpg"
             alt="User Picture"
-            class="w-12 h-12 rounded-full object-cover"
+            class="w-12 h-12 rounded-full object-cover relative cursor-pointer"
+            @click="showProfileModal = !showProfileModal"
           />
+
+          <HeaderProfileModal v-if="showProfileModal" />
         </div>
 
         <div class="header-profile-info">
@@ -28,6 +31,20 @@
     </div>
   </header>
 </template>
+
+<script lang="ts">
+import { defineComponent } from 'vue'
+import HeaderProfileModal from '@/components/header-modals/HeaderProfileModal.vue'
+
+export default defineComponent({
+  components: { HeaderProfileModal },
+  data: function () {
+    return {
+      showProfileModal: false,
+    }
+  }
+})
+</script>
 
 <style>
 .header {

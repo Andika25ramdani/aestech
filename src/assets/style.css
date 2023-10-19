@@ -2,8 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  @apply bg-gray-50;
+}
+
 #app {
-  @apply relative flex bg-gray-100;
+  @apply relative flex text-gray-700;
 }
 
 .main-content {
