@@ -63,7 +63,7 @@
   ],
   "KRYWN-202310-0018":{
     "id": "KRYWN-202310-0018",
-    "fullname": "YOUR NAME",
+    "fullname": "Andika",
     "gender": "L",
     "date_of_birth": "09/10/2023",
     "position": "Frontend Developer",
@@ -76,9 +76,9 @@
     },
     "social_media": [
       {
-        "twitter": "URL",
-        "facebook": "URL",
-        "instagram": "URL"
+        "twitter": "https://twitter.com",
+        "facebook": "https://facebook.com",
+        "instagram": "https://instagram.com"
       }
     ]
   }

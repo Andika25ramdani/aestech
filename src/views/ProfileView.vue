@@ -20,25 +20,31 @@
     <div class="profile-column">
       <div class="profile-info-card">
         <img
-          src="https://www.wilsoncenter.org/sites/default/files/media/images/person/james-person-1.jpg"
-          alt="User Picture"
+          :src="`${profile.avatar}`"
+          :alt="`${profile.fullname} Picture`"
           class="w-48 h-48 rounded-xl object-cover"
         />
 
         <div class="flex flex-col items-center gap-0">
-          <p class="font-bold leading-none">YOUR NAME</p>
-          <p class="text-xs">Frontend Developer</p>
+          <p class="font-bold leading-none">{{ profile.fullname }}</p>
+          <p class="text-xs">{{ profile.position }}</p>
         </div>
 
         <div class="flex gap-4">
-          <font-awesome-icon :icon="['fab', 'instagram']" size="xl" />
-          <font-awesome-icon :icon="['fab', 'twitter']" size="xl" />
-          <font-awesome-icon :icon="['fab', 'facebook']" size="xl" />
+          <a :href="`${profile.social_media[0].instagram}`">
+            <font-awesome-icon :icon="['fab', 'instagram']" size="xl" />
+          </a>
+          <a :href="`${profile.social_media[0].twitter}`">
+            <font-awesome-icon :icon="['fab', 'twitter']" size="xl" />
+          </a>
+          <a :href="`${profile.social_media[0].facebook}`">
+            <font-awesome-icon :icon="['fab', 'facebook']" size="xl" />
+          </a>
         </div>
 
         <div class="flex flex-col items-center gap-0">
-          <p class="font-bold leading-none">Kantor Cabang Bandung</p>
-          <p class="text-sm">Bandung, Jawa Barat</p>
+          <p class="font-bold leading-none">Kantor Cabang {{ profile.branch.name }}</p>
+          <p class="text-sm">{{ profile.branch.address }}</p>
         </div>
       </div>
 
@@ -47,27 +53,27 @@
           <div class="flex flex-col gap-4">
             <div class="info-group">
               <p class="info-group-title">ID Pegawai</p>
-              <p class="w-3/4">KRYWN-202310-0018</p>
+              <p class="w-3/4">{{ profile.id }}</p>
             </div>
             <div class="info-group">
               <p class="info-group-title">Nama Pegawai</p>
-              <p class="w-3/4">YOUR NAME</p>
+              <p class="w-3/4">{{ profile.fullname }}</p>
             </div>
             <div class="info-group">
               <p class="info-group-title">Jenis Kelamin</p>
-              <p class="w-3/4">L</p>
+              <p class="w-3/4">{{ profile.gender }}</p>
             </div>
             <div class="info-group">
               <p class="info-group-title">Tanggal Lahir</p>
-              <p class="w-3/4">09/10/2023</p>
+              <p class="w-3/4">{{ profile.date_of_birth }}</p>
             </div>
             <div class="info-group">
               <p class="info-group-title">Posisi</p>
-              <p class="w-3/4">Frontend Developer</p>
+              <p class="w-3/4">{{ profile.position }}</p>
             </div>
             <div class="info-group">
               <p class="info-group-title">Klinik Cabang</p>
-              <p class="w-3/4">Klinik Cabang Bandung</p>
+              <p class="w-3/4">Klinik Cabang {{ profile.branch.name }}</p>
             </div>
           </div>
         </div>
@@ -112,17 +118,46 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
+
+import axios from 'axios'
+
+import { Profile } from '@/utils/models/profile'
 import TemplateView from '@/components/RouterViewTemplate.vue'
 
 export default defineComponent({
   components: { TemplateView },
   data: function () {
     return {
+      profile: {} as Profile,
       inputPhone: '',
       inputEmail: '',
       inputAddress: '',
     }
+  },
+  created: function () {
+    this.getProfile()
+  },
+  methods: {
+    getProfile: function () {
+      console.log('GET PROFILE START')
+      axios
+        .get(
+          'https://my-json-server.typicode.com/Andika25ramdani/aestech/KRYWN-202310-0018'
+        )
+        .catch((er) => {
+          console.error('GET PROFILE FAIL', er)
+        })
+        .then((res) => {
+          console.log('GET PROFILE RES', res)
+          console.log('GET PROFILE RES DATA', (res as any).data)
+          this.profile = (res as any).data
+          console.log('GET PROFILE ', this.profile)
+        })
+        .finally(() => {
+          console.log('GET PROFILE FINISH')
+        })
+    },
   },
 })
 </script>
