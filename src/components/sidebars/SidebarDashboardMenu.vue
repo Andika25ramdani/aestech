@@ -3,8 +3,8 @@
       <SidebarMenuItem label="CRM" icon="sitemap" />
       <SidebarMenuItem label="Analisis" icon="chart-pie" />
       <hr class="bg-gray-50 border-none h-[1px] opacity-25">
-      <router-link to="/about">
-        <SidebarMenuItem label="Penjualan" icon="shopping-cart" :active="$route.name == 'about'" />
+      <router-link to="/">
+        <SidebarMenuItem label="Penjualan" icon="shopping-cart" :active="$route.name == 'home'" />
       </router-link>
       <SidebarMenuItem label="Eksekutif" icon="arrow-up-right-dots" />
   </ul>

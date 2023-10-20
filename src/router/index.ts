@@ -7,7 +7,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
     name: "home",
-    component: BranchsView,
+    component: HomeView,
   },
   {
     path: "/profile",

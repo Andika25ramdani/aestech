@@ -1,12 +1,12 @@
 <template>
   <div class="branch-list-card">
     <div class="flex gap-4 items-center max-w-full">
-      <div class="bg-light-orange text-dark-orange rounded-md h-14 min-w-[56px] w-14 flex items-center justify-center">
-        <font-awesome-icon
-          :icon="['fas', 'hospital']"
-          size="xl"
-        />
-      </div>
+      <IconContainer
+        :icon="['fas', 'hospital']"
+        iconSize="xl"
+        containerClass="bg-light-orange text-dark-orange rounded-md h-14 min-w-[56px] w-14"
+      />
+      
       <div class="branch-list-card-info">
         <h5 class="leading-none font-semibold text-gray-900 max-one-line">
           {{ branch?.name }}
@@ -21,8 +21,10 @@
 <script lang="ts">
 import { defineComponent, PropType } from 'vue'
 import { Branch } from '../../utils/models/branch'
+import IconContainer from '@/components/IconContainer.vue'
 
 export default defineComponent({
+  components: { IconContainer },
   props: {
     branch: {} as PropType<Branch>,
   },
@@ -36,6 +38,11 @@ export default defineComponent({
 
 .branch-list-card-info {
   @apply flex flex-col gap-0 max-w-[128px];
-  @layer min-[320px]:max-w-full;
+}
+
+@media (min-width: 425px) {
+  .branch-list-card-info {
+    @apply max-w-full;
+  }
 }
 </style>

@@ -4,11 +4,12 @@
 
     <ul class="header-notif-list">
       <li v-for="i in 3" :key="i" class="notif-list-item">
-        <div
-          class="bg-gray-100 flex items-center justify-center w-6 h-6 rounded-lg p-5"
-        >
-          <font-awesome-icon :icon="['fas', 'bell']" class="text-gray-400" />
-        </div>
+        <IconContainer
+          :icon="['fas', 'bell']"
+          iconClass="text-gray-400"
+          containerClass="bg-gray-100 w-6 h-6 rounded-lg p-5"
+        />
+
         <div class="flex flex-col gap-1">
           <p class="content-title max-one-line">Pembayaran berhasil</p>
           <p class="content-text max-one-line">
@@ -20,10 +21,18 @@
   </div>
 </template>
 
+<script lang="ts">
+import { defineComponent } from 'vue'
+import IconContainer from '@/components/IconContainer.vue'
+
+export default defineComponent({
+  components: { IconContainer },
+})
+</script>
+
 <style>
 .header-notif-modal {
   @apply absolute top-12 -right-14 w-72 sm:w-80 bg-white shadow-lg rounded-2xl py-5 flex flex-col gap-1;
-  @layer min-[375px]:-right-28;
 }
 
 .header-notif-list .notif-list-item {
@@ -36,5 +45,11 @@
 
 .header-notif-list .notif-list-item .content-text {
   @apply text-xs;
+}
+
+@media (min-width: 375px) {
+  .header-notif-modal {
+    @apply -right-28;
+  }
 }
 </style>
