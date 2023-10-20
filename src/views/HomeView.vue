@@ -3,7 +3,7 @@
     viewTitle="Performa Klinik Cabang Bandung"
     viewSubitle="Lihat performa dan lihat laporan klinik"
   >
-    <div class="flex flex-col gap-4">
+    <div class="flex flex-col gap-4 mt-8">
       <section class="flex flex-col lg:flex-row gap-4">
         <HomeCard
           title="Pendapatan Bulan Ini"

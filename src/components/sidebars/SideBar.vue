@@ -17,11 +17,35 @@
       <span>{{ currentMenu }}</span>
     </p>
 
-    <SidebarMainMenu
+    <!-- <SidebarMainMenu
       v-if="currentMenu == CurrentMenu.MAIN"
       @menu-choosen="setCurrentMenu"
     />
-    <SidebarMenuDashboard v-if="currentMenu == CurrentMenu.DASHBOARD" />
+    <SidebarMenuDashboard v-if="currentMenu == CurrentMenu.DASHBOARD" /> -->
+
+    <ul class="sidebar-menu overflow-auto">
+      <SidebarMenuItem
+        v-for="menu in SIDEBAR_MENU"
+        :key="menu.name"
+        :label="menu.name"
+        :icon="menu.icon"
+        :hasChild="menu.children.length > 0"
+      >
+        <!-- <SidebarMenuItem
+          v-for="submenu in menu.children"
+          :key="submenu.name"
+          :label="submenu.name"
+          :icon="submenu.icon"
+          :hasChild="submenu.children.length > 0"
+        >
+          <SidebarMenuItem
+            v-for="submenuitem in submenu.children"
+            :key="submenuitem.name"
+            :label="submenuitem.name"
+          />
+        </SidebarMenuItem> -->
+      </SidebarMenuItem>
+    </ul>
   </div>
 </template>
 
@@ -30,13 +54,16 @@ import { defineComponent } from 'vue'
 
 import SidebarMainMenu from '@/components/sidebars/SidebarMainMenu.vue'
 import SidebarMenuDashboard from '@/components/sidebars/SidebarDashboardMenu.vue'
+import SidebarMenuItem from '@/components/sidebars/SidebarMenuItem.vue'
 
 import { CurrentMenu } from '@/utils/enums/current-menu'
+import { SIDEBAR_MENU } from '@/utils/constants/sidebar-menu'
 
 export default defineComponent({
-  components: { SidebarMainMenu, SidebarMenuDashboard },
+  components: { SidebarMainMenu, SidebarMenuDashboard, SidebarMenuItem },
   data: function () {
     return {
+      SIDEBAR_MENU,
       CurrentMenu,
       currentMenu: CurrentMenu.MAIN,
     }

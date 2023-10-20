@@ -1,15 +1,20 @@
 <template>
-  <li :class="`sidebar-menu-item${active ? ' text-dark-orange' : ''}`">
-    <p class="flex gap-4 items-center">
-      <font-awesome-icon :icon="['fas', icon]" size="lg" class="w-5" />
-      <span>{{ label }}</span>
-    </p>
+  <li class="`sidebar-menu-item ${active ? ' text-dark-orange' : ''}`">
+    <div class="sidebar-menu-item-content">
+      <p class="flex gap-4 items-center">
+        <font-awesome-icon :icon="['fas', icon]" size="lg" class="w-5" />
+        <span class="max-one-line">{{ label }}</span>
+      </p>
 
-    <font-awesome-icon
-      v-if="hasChild"
-      :icon="['fas', 'chevron-right']"
-      size="xs"
-    />
+      <font-awesome-icon
+        v-if="hasChild"
+        :icon="['fas', 'chevron-right']"
+        size="xs"
+      />
+    </div>
+    <ul class="sidebar-menu pl-6">
+      <slot />
+    </ul>
   </li>
 </template>
 
@@ -26,6 +31,10 @@ export default {
 
 <style>
 .sidebar-menu-item {
-  @apply flex justify-between items-center cursor-pointer py-3 px-6;
+  @apply flex flex-col justify-between items-center cursor-pointer;
+}
+
+.sidebar-menu-item-content {
+  @apply flex justify-between items-center py-3 px-6;
 }
 </style>
