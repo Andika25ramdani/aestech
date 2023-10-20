@@ -1,17 +1,17 @@
 <template>
   <div class="branch-list-card">
-    <div class="flex gap-4 items-center">
-      <div class="bg-light-orange rounded-md p-4">
+    <div class="flex gap-4 items-center max-w-full">
+      <div class="bg-light-orange text-dark-orange rounded-md h-14 min-w-[56px] w-14 flex items-center justify-center">
         <font-awesome-icon
           :icon="['fas', 'hospital']"
-          size="xl text-dark-orange"
+          size="xl"
         />
       </div>
       <div class="branch-list-card-info">
-        <h5 class="leading-none font-semibold text-gray-900">
+        <h5 class="leading-none font-semibold text-gray-900 max-one-line">
           {{ branch?.name }}
         </h5>
-        <p class="text-sm">{{ branch?.email }}</p>
+        <p class="text-sm max-one-line">{{ branch?.email }}</p>
       </div>
     </div>
     <font-awesome-icon :icon="['fas', 'chevron-right']" size="xs" />
@@ -31,10 +31,11 @@ export default defineComponent({
 
 <style>
 .branch-list-card {
-  @apply flex justify-between items-center bg-white p-4 rounded-xl shadow-sm;
+  @apply flex justify-between items-center bg-white p-4 rounded-xl shadow-sm min-w-[256px];
 }
 
 .branch-list-card-info {
-  @apply flex flex-col gap-0;
+  @apply flex flex-col gap-0 max-w-[128px];
+  @layer min-[320px]:max-w-full;
 }
 </style>

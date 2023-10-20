@@ -14,3 +14,14 @@ html {
   @apply absolute sm:left-52 md:left-72;
   width: -webkit-fill-available;
 }
+
+.rounded-fill-button {
+  @apply rounded-full bg-dark-orange text-white px-6 py-4;
+}
+
+.max-one-line {
+  @apply overflow-hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}

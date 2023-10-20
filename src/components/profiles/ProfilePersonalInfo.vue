@@ -57,11 +57,7 @@
       </div>
     </div>
   </div>
-  <button
-    class="py-4 px-6 rounded-full bg-dark-orange text-white w-max mx-auto mt-4"
-  >
-    Simpan
-  </button>
+  <button class="rounded-fill-button w-max mx-auto mt-4">Simpan</button>
 </template>
 
 <script lang="ts">
